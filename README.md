@@ -11,7 +11,7 @@
 2. Clone 本项目
 3. 将插件文件夹重命名为 `FootnotesPlus`
 4. 上传本插件，并放置在 `usr/plugins/` 目录下
-5. 登录你的 Typecho 后台，并进行安装即。
+5. 登录你的 Typecho 后台，并进行安装即可。
 
 ## 项目说明
 Typecho 所使用的Markdown编辑器本身带有注脚功能，本插件只是加强注脚的功能性。

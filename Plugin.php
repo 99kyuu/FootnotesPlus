@@ -137,7 +137,7 @@ class FootnotesPlus_Plugin implements Typecho_Plugin_Interface {
 
         //是否使用方括号
         if($isSquareBrackets){
-            var_dump($isSquareBrackets);
+//            var_dump($isSquareBrackets);
             echo "<script type=\"text/javascript\">$.qtip.isSquareBrackets = true</script>" . "\n";
         }
 
