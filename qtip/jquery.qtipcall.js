@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
 	f1();
-
+	// setHit();
 });
 
 function f1(){
@@ -10,7 +10,7 @@ function f1(){
 		// f1的任务代码
 		setHit();
 
-	}, 2);
+	}, 600);
 
 }
 
@@ -38,9 +38,13 @@ function setHit() {
 	});*/
 
 	let num = $(".footnotes li[id^='fn-']").length;
+	// console.log("jQuery.migrateVersion:"+jQuery.migrateVersion+"::num::"+num);
 	if(!(num>0)){
 		return
 	}
+
+
+
 
 	for (let index = 0; index < num; index++) {
 		// console.log($(".footnotes ol li[id=fn-"+(index+1)+"]"));
@@ -49,6 +53,7 @@ function setHit() {
 		let showText = textFoot.substring(0,textFoot.lastIndexOf("<a ")-1);
 		// console.log(showText);
 		let tip = "sup[id=fnref-"+(index+1)+"]";
+		// console.log($(tip).html());
 		//替换为方括号
 		if($.qtip.isSquareBrackets){
 			$(tip+" a").text("["+$(tip+" a").html()+"]");
