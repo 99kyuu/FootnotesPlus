@@ -1,5 +1,21 @@
 jQuery(document).ready(function($){
-/*	$('.footnote-ref').qtip({
+	f1();
+
+});
+
+function f1(){
+	//主要是处理Mirages主题的兼容性
+	setTimeout(function () {
+
+		// f1的任务代码
+		setHit();
+
+	}, 2);
+
+}
+
+function setHit() {
+	/*	$('.footnote-ref').qtip({
 		// prerender: true,
 		// content: 'This is an active list element',
 		content:'<a href="http://baidu.com">测试</a>注脚1 <a href="#fnref-1" class="footnote-backref">↩</a>',
@@ -41,9 +57,9 @@ jQuery(document).ready(function($){
 		$(tip).qtip({
 			content:showText,
 			position: {
-			    my: 'top center',  // Position my top left...
-			    at: 'bottom center', // at the bottom right of...
-			    viewport: $(window)
+				my: 'top center',  // Position my top left...
+				at: 'bottom center', // at the bottom right of...
+				viewport: $(window)
 			},
 			style: {
 				classes: 'qtip-bootstrap'
@@ -57,6 +73,6 @@ jQuery(document).ready(function($){
 				event: 'focus mouseenter'
 			}
 		});
-	}
 
-});
+	}
+}

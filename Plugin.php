@@ -9,6 +9,8 @@
  * @date 2022.9.3
  */
 
+require_once("lib/Label.php");
+
 class FootnotesPlus_Plugin implements Typecho_Plugin_Interface {
 
     /**
@@ -30,7 +32,11 @@ class FootnotesPlus_Plugin implements Typecho_Plugin_Interface {
         //文章页输出 之后
         Typecho_Plugin::factory('Widget_Archive')->afterRender = array('FootnotesPlus_Plugin', 'afterRender');
 
-        Typecho_Plugin::factory('Widget_Abstract_Contents')->contentEx = array('FootnotesPlus_Plugin', 'contentEx');
+        if(Typecho_Plugin::export()['activated']["Mirages"]!=NULL){
+            Typecho_Plugin::factory('Mirages_Plugin')->contentEx = array('FootnotesPlus_Plugin', 'contentEx');
+        }else{
+            Typecho_Plugin::factory('Widget_Abstract_Contents')->contentEx = array('FootnotesPlus_Plugin', 'contentEx');
+        }
 
         return "插件已开启，请进行配置";
     }
@@ -54,7 +60,7 @@ class FootnotesPlus_Plugin implements Typecho_Plugin_Interface {
         $form->addInput($isInsertFootnotesLabel);
 
         //注脚标题内容
-        $insertFootnotesLabelContent = new Typecho_Widget_Helper_Form_Element_Text('insertFootnotesLabelContent', NULL, "<p>注释</p>", _t('注脚标题：'), '可以使用HTML代码');
+        $insertFootnotesLabelContent = new Typecho_Widget_Helper_Form_Element_Text('insertFootnotesLabelContent', NULL, "<p style=\"margin-bottom: 0.8rem;line-height:0.1\">注释</p>", _t('注脚标题：'), '可以使用HTML代码，可以修改style为你喜欢的样式');
         $form->addInput($insertFootnotesLabelContent);
 
         //是否使用插件jQuery Migrate，FootnotesPlus 必备
@@ -89,6 +95,10 @@ class FootnotesPlus_Plugin implements Typecho_Plugin_Interface {
         $customJsContent = new Typecho_Widget_Helper_Form_Element_Textarea('customJsContent', NUll, NUll, _t('自定义js内容：'), '插件禁用后数据将丢失，请注意自行备份');
         $form->addInput($customJsContent);
 
+        //说明
+        $form->addInput(new Label_Plugin('desLable', NULL, NULL, _t('说明'), _t(
+            '本插件兼容Mirages插件：<br>如果使用Mirages插件，请先开启Mirages插件，然后开启本插件，如果开启后又禁用Mirages，请对本插件也禁用然后再开启。<br>禁用插件前记得备份你填写的插件数据。'
+        )));
     }
 
 
@@ -161,6 +171,8 @@ class FootnotesPlus_Plugin implements Typecho_Plugin_Interface {
      */
     public static function afterRender($archive){
 //        var_dump($archive);
+
+
     }
 
 
